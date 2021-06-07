@@ -1,0 +1,22 @@
+
+<h2>Add Notes to the List</h2>
+<input class="form-control" type="text" [(ngModel)]="note" (keyup.enter)="addNote()">
+<hr>
+<button 
+[disabled]="notes.length <= 0"
+class="btn btn-secondary form-control" (click)="changeFirstNote()">Change First Note</button>
+<hr>
+<button class="btn btn-warning form-control" (click)="triggerChangeDetection()">Click me to Trigger Change Detection</button>
+
+<h2>Notes List</h2>
+
+<ul>
+    <app-note-item
+    *ngFor="let note of notes; let i = index"
+    [note]="note.message"
+    [noteIndex]="i"
+    (deleteNote)="deleteNote($event)">
+</app-note-item>
+</ul>
+<h4 *ngIf="notes.length <= 0">Please add notes to see them here</h4>
+
